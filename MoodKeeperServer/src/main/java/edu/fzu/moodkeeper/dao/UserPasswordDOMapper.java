@@ -1,5 +1,6 @@
 package edu.fzu.moodkeeper.dao;
 
+import edu.fzu.moodkeeper.dataobject.UserDO;
 import edu.fzu.moodkeeper.dataobject.UserPasswordDO;
 
 public interface UserPasswordDOMapper {
@@ -10,4 +11,6 @@ public interface UserPasswordDOMapper {
     UserPasswordDO selectByUserId(Integer UserId);
     int updateByPrimaryKeySelective(UserPasswordDO record);
     int updateByPrimaryKey(UserPasswordDO record);
+
+    int updateByUserId(UserDO userDO);
 }

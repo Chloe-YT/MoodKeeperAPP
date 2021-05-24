@@ -11,5 +11,11 @@ public interface DiaryService {
 
     int queryByUUID(DiaryDO diaryDO);
 
+    int delete(String userId,String uuid);
+
+    DiaryDO queryByUUIDAndUserId(String uuid);
+
+    void updateByUserIdAndUuid(DiaryDO diaryDO);
+
     List<DiaryDO> queryNotIncludeUuids(String userId, List<String> list);
 }

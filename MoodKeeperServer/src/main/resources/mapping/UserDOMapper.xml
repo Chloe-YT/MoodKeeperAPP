@@ -10,10 +10,11 @@
     <result column="telephone" jdbcType="VARCHAR" property="telephone" />
     <result column="register_mode" jdbcType="VARCHAR" property="registerMode" />
     <result column="third_part_id" jdbcType="VARCHAR" property="thirdPartId" />
+    <result column="head_image_path" jdbcType="VARCHAR" property="headImagePath" />
   </resultMap>
 
   <sql id="Base_Column_List">
-    id, name, gender, age, telephone, register_mode, third_part_id
+    id, name, gender, age, telephone, register_mode, third_part_id,head_image_path
   </sql>
 
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
@@ -40,10 +41,10 @@
   <insert id="insert" parameterType="edu.fzu.moodkeeper.dataobject.UserDO">
     insert into user_info (id, name, gender,
       age, telephone, register_mode,
-      third_part_id)
+      third_part_id,head_image_path)
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{gender,jdbcType=TINYINT},
       #{age,jdbcType=INTEGER}, #{telephone,jdbcType=VARCHAR}, #{registerMode,jdbcType=VARCHAR},
-      #{thirdPartId,jdbcType=VARCHAR})
+      #{thirdPartId,jdbcType=VARCHAR},#{headImagePath,jdbcType=VARCHAR})
   </insert>
 
   <!-- 需要手动指定  keyProperty="id" useGeneratedKeys="true" -->
@@ -99,6 +100,9 @@
       <if test="thirdPartId != null">
         #{thirdPartId,jdbcType=VARCHAR},
       </if>
+      <if test="headImagePath != null">
+        #{headImagePath,jdbcType=VARCHAR},
+      </if>
     </trim>
   </insert>
 
@@ -136,7 +140,19 @@
       age = #{age,jdbcType=INTEGER},
       telephone = #{telephone,jdbcType=VARCHAR},
       register_mode = #{registerMode,jdbcType=VARCHAR},
-      third_part_id = #{thirdPartId,jdbcType=VARCHAR}
+      third_part_id = #{thirdPartId,jdbcType=VARCHAR},
+      head_image_path = #{headImagePath,jdbcType=VARCHAR},
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByUserId" parameterType="edu.fzu.moodkeeper.dataobject.UserDO">
+    update user_info
+    set name = #{name,jdbcType=VARCHAR},
+      gender = #{gender,jdbcType=TINYINT},
+      age = #{age,jdbcType=INTEGER},
+      telephone = #{telephone,jdbcType=VARCHAR},
+      register_mode = #{registerMode,jdbcType=VARCHAR},
+      third_part_id = #{thirdPartId,jdbcType=VARCHAR},
+      head_image_path = #{headImagePath,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

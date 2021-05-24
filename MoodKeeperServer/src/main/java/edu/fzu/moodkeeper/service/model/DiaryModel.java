@@ -25,6 +25,7 @@ public class DiaryModel {
             public int userId;
             public int categoryId;
             public String uuid;
+            public String imagePath;
 
             @Override
             public String toString() {
@@ -40,6 +41,7 @@ public class DiaryModel {
                         ", userId=" + userId +
                         ", categoryId=" + categoryId +
                         ", uuid='" + uuid + '\'' +
+                        ", imagePath='" + imagePath + '\'' +
                         '}';
             }
         }

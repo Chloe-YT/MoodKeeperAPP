@@ -41,6 +41,21 @@ public class DiaryServiceImpl implements DiaryService {
     }
 
     @Override
+    public int delete(String userId, String uuid) {
+        return diaryDOMapper.deleteByUserIdAndUuid(userId,uuid);
+    }
+
+    @Override
+    public DiaryDO queryByUUIDAndUserId(String uuid) {
+        return diaryDOMapper.queryByUUIDAndUserId(uuid);
+    }
+
+    @Override
+    public void updateByUserIdAndUuid(DiaryDO diaryDO) {
+        diaryDOMapper.updateByUserIdAndUuid(diaryDO);
+    }
+
+    @Override
     public List<DiaryDO> queryNotIncludeUuids(String userId, List<String> list) {
         List<DiaryDO> diaryDOS = diaryDOMapper.queryNotIncludeUuids(userId, list);
         return diaryDOS;

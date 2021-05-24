@@ -26,6 +26,7 @@ public class UserModel {
     /* 整合加密后的密码字段 */
     @NotNull(message = "密码不能为空")
     private String encryptPassword;
+    private String headImagePath;
 
     public Integer getId() {
         return id;
@@ -89,5 +90,13 @@ public class UserModel {
 
     public void setEncryptPassword(String encryptPassword) {
         this.encryptPassword = encryptPassword;
+    }
+
+    public String getHeadImagePath() {
+        return headImagePath;
+    }
+
+    public void setHeadImagePath(String headImagePath) {
+        this.headImagePath = headImagePath;
     }
 }

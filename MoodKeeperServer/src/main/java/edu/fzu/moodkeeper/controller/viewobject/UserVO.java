@@ -6,6 +6,7 @@ public class UserVO {
     private Byte gender;
     private Integer age;
     private String telephone;
+    private String headImagePath;
 
     public Integer getId() {
         return id;
@@ -45,5 +46,13 @@ public class UserVO {
 
     public void setTelephone(String telephone) {
         this.telephone = telephone;
+    }
+
+    public String getHeadImagePath() {
+        return headImagePath;
+    }
+
+    public void setHeadImagePath(String headImagePath) {
+        this.headImagePath = headImagePath;
     }
 }

@@ -123,7 +123,7 @@ public class UserController extends BaseController {
      * 1、生成验证码
      * 2、存到 Session 中
      * 3、返回验证码
-     *
+     * <p>
      * 注意这里POST请求要求传递请求头 content-type:application/x-www-form-urlencoded
      *
      * @param telephone
@@ -279,8 +279,12 @@ public class UserController extends BaseController {
         ) {
             throw new BusinessException(EmBusinessError.PARAMETER_VALIDATION_ERROR);
         }
-
-        boolean hasRegistered = userService.getUserByTelephone(telephone);
+        boolean hasRegistered = false;
+        try{
+            hasRegistered = userService.getUserByTelephone(telephone);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
         if (!hasRegistered) {
             throw new BusinessException(EmBusinessError.USER_NOT_EXIST);
         }
@@ -374,5 +378,22 @@ public class UserController extends BaseController {
         BASE64Encoder base64en = new BASE64Encoder();
         String newstr = base64en.encode(md5.digest(str.getBytes("utf-8")));
         return newstr;
+    }
+
+    @RequestMapping(value = "/updateHeadImg", method = {RequestMethod.POST}, consumes = {CONTENT_TYPE_FORMED})
+    @ResponseBody
+    public CommonReturnType updateHeadImg(@RequestParam("userId") Integer userId, @RequestParam("headImagePath") String headImagePath) {
+        System.out.println("userId="+userId+"  ;headImagePath="+headImagePath);
+        UserModel userModel = userService.getUserById(userId);
+        userModel.setHeadImagePath(headImagePath);
+
+        try {
+            userService.updateUserModel(userModel);
+            return CommonReturnType.create(userModel);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return CommonReturnType.create(new UserModel());
     }
 }

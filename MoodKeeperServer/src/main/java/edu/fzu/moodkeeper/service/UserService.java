@@ -24,4 +24,6 @@ public interface UserService {
     void findPassword(UserModel userModel) throws BusinessException;
 
     UserModel validateLogin(String telphone, String encryptPassword) throws BusinessException;
+
+    void updateUserModel(UserModel userModel);
 }

@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50734
 File Encoding         : 65001
 
-Date: 2021-05-11 16:57:53
+Date: 2021-05-17 11:44:22
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -31,14 +31,11 @@ CREATE TABLE `diary` (
   `state` int(3) unsigned NOT NULL,
   `anchor` datetime NOT NULL,
   `uuid` varchar(128) NOT NULL,
+ `image_path` varchar(128) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
   CONSTRAINT `user_id` FOREIGN KEY (`user_id`) REFERENCES `user_info` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of diary
--- ----------------------------
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for user_info
@@ -52,17 +49,12 @@ CREATE TABLE `user_info` (
   `telephone` varchar(11) CHARACTER SET utf8 NOT NULL DEFAULT '' COMMENT '手机号',
   `register_mode` varchar(8) CHARACTER SET utf8 NOT NULL DEFAULT '' COMMENT '注册方式',
   `third_part_id` varchar(32) CHARACTER SET utf8 NOT NULL DEFAULT '' COMMENT '第三方id',
-  `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+ `head_image_path` varchar(64) CHARACTER SET utf8 NOT NULL DEFAULT '' COMMENT '头像路径',  
+ `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE KEY `KEY_UNIQUE_PHONE` (`telephone`) USING BTREE COMMENT '手机号唯一'
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
-
--- ----------------------------
--- Records of user_info
--- ----------------------------
-INSERT INTO `user_info` VALUES ('29', 'zyt', '2', '21', '13107936123', 'byphone', '', '2021-05-11 16:55:36', '2021-05-11 16:55:36');
-INSERT INTO `user_info` VALUES ('30', 'zzz', '2', '20', '13107936111', 'byphone', '', '2021-05-11 16:56:10', '2021-05-11 16:56:10');
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
 
 -- ----------------------------
 -- Table structure for user_password
@@ -75,10 +67,4 @@ CREATE TABLE `user_password` (
   `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
-
--- ----------------------------
--- Records of user_password
--- ----------------------------
-INSERT INTO `user_password` VALUES ('29', '4QrcOUm6Wau+VuBX8g+IPg==', '29', '2021-05-11 16:55:36', '2021-05-11 16:55:36');
-INSERT INTO `user_password` VALUES ('30', '4QrcOUm6Wau+VuBX8g+IPg==', '30', '2021-05-11 16:56:10', '2021-05-11 16:56:10');
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;

@@ -229,6 +229,12 @@ public class UserServiceImpl implements UserService  {
     }
 
     @Override
+    public void updateUserModel(UserModel userModel) {
+        UserDO userDO = convertFromModel(userModel);
+        userDOMapper.updateByUserId(userDO);
+    }
+
+    @Override
     @Transactional
     public void updateMessage(UserModel userModel) throws BusinessException {
         if (userModel == null){
@@ -289,4 +295,6 @@ public class UserServiceImpl implements UserService  {
 
         userPasswordDOMapper.updateByPrimaryKeySelective(userPasswordDO);
     }
+
+
 }
